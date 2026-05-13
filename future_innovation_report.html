@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미래혁신팀 통합 리포팅</title>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface2: #f0f3f9;
+    --border: #e2e8f0;
+    --accent: #0ec97a;
+    --accent2: #f59e0b;
+    --accent3: #ef4444;
+    --accent4: #3b82f6;
+    --slack: #E01E5A;
+    --gws: #4285F4;
+    --text: #1a202c;
+    --text-muted: #64748b;
+    --text-dim: #a0aec0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: linear-gradient(135deg, #f0f4ff 0%, #fafbff 50%, #f0faf6 100%);
+    color: var(--text);
+    font-family: 'Pretendard', sans-serif;
+    min-height: 100vh;
+    padding: 40px 24px 80px;
+  }
+
+  .wrapper { max-width: 960px; margin: 0 auto; }
+
+  /* 헤더 */
+  .header {
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(74, 240, 176, 0.1);
+    border: 1px solid rgba(74, 240, 176, 0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .header h1 span { color: var(--accent); }
+  .header-meta {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .header-meta span::before { content: '· '; }
+
+  /* 섹션 타이틀 */
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .section-title .pill {
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .pill-slack { background: rgba(224,30,90,0.15); color: var(--slack); border: 1px solid rgba(224,30,90,0.3); }
+  .pill-gws { background: rgba(66,133,244,0.15); color: var(--gws); border: 1px solid rgba(66,133,244,0.3); }
+  .pill-all { background: rgba(74,240,176,0.1); color: var(--accent); border: 1px solid rgba(74,240,176,0.25); }
+
+  /* KPI 그리드 */
+  .kpi-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .kpi-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .kpi-block-header {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .kpi-block-header.slack { color: var(--slack); background: rgba(224,30,90,0.05); }
+  .kpi-block-header.gws { color: var(--gws); background: rgba(66,133,244,0.05); }
+  .kpi-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .kpi-item {
+    padding: 18px 20px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .kpi-item:nth-child(2n) { border-right: none; }
+  .kpi-item:nth-last-child(-n+2) { border-bottom: none; }
+  .kpi-item-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .kpi-item-value {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .kpi-item-unit { font-size: 13px; font-weight: 500; margin-left: 2px; }
+  .kpi-item-sub { font-size: 11px; color: var(--text-dim); margin-top: 5px; }
+  .val-slack { color: var(--slack); }
+  .val-gws { color: var(--gws); }
+  .val-green { color: var(--accent); }
+  .val-yellow { color: var(--accent2); }
+  .val-red { color: var(--accent3); }
+  .val-blue { color: var(--accent4); }
+
+  /* 멤버 테이블 */
+  .member-table {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    animation: fadeUp 0.6s ease 0.2s both;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .member-table table { width: 100%; border-collapse: collapse; }
+  .member-table thead tr {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .member-table th {
+    padding: 12px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .member-table th:not(:first-child) { text-align: center; }
+  .member-table td {
+    padding: 14px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+    vertical-align: middle;
+  }
+  .member-table td:not(:first-child) { text-align: center; }
+  .member-table tr:last-child td { border-bottom: none; }
+  .member-table tr:hover td { background: rgba(0,0,0,0.02); }
+  .member-name { font-weight: 700; font-size: 14px; }
+  .member-account { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-family: monospace; }
+
+  /* 배지 */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .badge-green { background: rgba(74,240,176,0.12); color: var(--accent); border: 1px solid rgba(74,240,176,0.25); }
+  .badge-yellow { background: rgba(247,183,49,0.12); color: var(--accent2); border: 1px solid rgba(247,183,49,0.25); }
+  .badge-red { background: rgba(255,107,107,0.12); color: var(--accent3); border: 1px solid rgba(255,107,107,0.25); }
+  .badge-blue { background: rgba(116,185,255,0.12); color: var(--accent4); border: 1px solid rgba(116,185,255,0.25); }
+  .badge-gray { background: rgba(139,148,158,0.1); color: var(--text-muted); border: 1px solid rgba(139,148,158,0.2); }
+
+  /* 바 */
+  .bar-wrap { display: flex; align-items: center; gap: 8px; justify-content: center; }
+  .bar-bg { width: 50px; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-slack { background: var(--slack); }
+  .bar-gws { background: var(--gws); }
+  .bar-green { background: var(--accent); }
+  .bar-num { font-size: 12px; font-weight: 600; min-width: 18px; text-align: right; }
+
+  /* 채널 카드 */
+  .channel-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .channel-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+    gap: 12px;
+  }
+  .channel-row:last-child { border-bottom: none; }
+  .channel-name { font-size: 13px; font-weight: 600; font-family: monospace; color: var(--accent4); }
+  .channel-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .channel-stats { display: flex; gap: 20px; align-items: center; flex-shrink: 0; }
+  .channel-stat { text-align: center; }
+  .channel-stat-val { font-size: 16px; font-weight: 700; }
+  .channel-stat-label { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+
+  /* 인사이트 */
+  .insight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    animation: fadeUp 0.6s ease 0.4s both;
+  }
+  .insight-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .insight-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .insight-title { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+  .insight-body { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+  .insight-body strong { color: var(--accent2); }
+
+  /* 종합 평가 */
+  .summary-card {
+    background: linear-gradient(135deg, rgba(14,201,122,0.06) 0%, rgba(66,133,244,0.06) 100%);
+    border: 1px solid rgba(14,201,122,0.25);
+    border-radius: 14px;
+    padding: 24px 28px;
+    animation: fadeUp 0.6s ease 0.5s both;
+  }
+  .summary-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--accent);
+  }
+  .summary-body {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .summary-body strong { color: var(--text); }
+  .summary-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tag-green { background: rgba(74,240,176,0.12); color: var(--accent); }
+  .tag-red { background: rgba(255,107,107,0.12); color: var(--accent3); }
+  .tag-yellow { background: rgba(247,183,49,0.12); color: var(--accent2); }
+  .tag-blue { background: rgba(116,185,255,0.12); color: var(--accent4); }
+
+  .footer {
+    margin-top: 48px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .kpi-grid-2 { grid-template-columns: 1fr; }
+    .insight-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 26px; }
+    .channel-stats { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- 헤더 -->
+  <div class="header">
+    <div class="header-badge">📊 GWS + Slack 통합 리포팅</div>
+    <h1>미래혁신팀<br><span>협업툴 활동 현황</span></h1>
+    <div class="header-meta">
+      <span>기준일: 2026년 5월 11일</span>
+      <span>이전 30일 데이터</span>
+      <span>비전총괄 소속</span>
+      <span>총 4명</span>
+    </div>
+  </div>
+
+  <!-- KPI: Slack + GWS -->
+  <div class="section-title">핵심 지표 <span class="pill pill-all">Overview</span></div>
+  <div class="kpi-grid-2">
+
+    <!-- Slack -->
+    <div class="kpi-block" style="animation: fadeUp 0.6s ease 0.1s both;">
+      <div class="kpi-block-header slack">💬 Slack</div>
+      <div class="kpi-inner">
+        <div class="kpi-item">
+          <div class="kpi-item-label">가입 완료</div>
+          <div class="kpi-item-value val-slack">3<span class="kpi-item-unit">명</span></div>
+          <div class="kpi-item-sub">정현수님 미수락</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-item-label">평균 활성 일수</div>
+          <div class="kpi-item-value val-slack">4.7<span class="kpi-item-unit">일</span></div>
+          <div class="kpi-item-sub">가입 3명 기준</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-item-label">게시 메시지</div>
+          <div class="kpi-item-value val-red">3<span class="kpi-item-unit">건</span></div>
+          <div class="kpi-item-sub">김표상님 단독</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-item-label">팀 채널 메시지</div>
+          <div class="kpi-item-value val-red">0<span class="kpi-item-unit">건</span></div>
+          <div class="kpi-item-sub">#00_vision_미래혁신팀</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GWS -->
+    <div class="kpi-block" style="animation: fadeUp 0.6s ease 0.15s both;">
+      <div class="kpi-block-header gws">🔷 GWS / Gemini</div>
+      <div class="kpi-inner">
+        <div class="kpi-item">
+          <div class="kpi-item-label">Gemini 사용률</div>
+          <div class="kpi-item-value val-yellow">25<span class="kpi-item-unit">%</span></div>
+          <div class="kpi-item-sub">4명 중 김신애님 1명</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-item-label">팀 전체 사용량</div>
+          <div class="kpi-item-value val-gws">176<span class="kpi-item-unit">회</span></div>
+          <div class="kpi-item-sub">전원 김신애님 사용량</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-item-label">Gemini 이용 일수</div>
+          <div class="kpi-item-value val-green">12<span class="kpi-item-unit">일</span></div>
+          <div class="kpi-item-sub">김신애님 기준</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-item-label">Sheets 사용량</div>
+          <div class="kpi-item-value val-green">74<span class="kpi-item-unit">회</span></div>
+          <div class="kpi-item-sub">전체의 42% · 주력 도구</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 멤버별 현황 -->
+  <div class="section-title">멤버별 통합 현황 <span class="pill pill-all">Members</span></div>
+  <div class="member-table">
+    <table>
+      <thead>
+        <tr>
+          <th>멤버</th>
+          <th>Slack 상태</th>
+          <th style="color:var(--slack)">활성 일수</th>
+          <th style="color:var(--slack)">메시지</th>
+          <th style="color:var(--gws)">Gemini</th>
+          <th style="color:var(--gws)">GWS 사용량</th>
+          <th>종합</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="member-name">김신애</div>
+            <div class="member-account">김신애</div>
+          </td>
+          <td><span class="badge badge-green">멤버</span></td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-bg"><div class="bar-fill bar-slack" style="width:10%"></div></div>
+              <span class="bar-num">3</span>
+            </div>
+          </td>
+          <td><span style="color:var(--text-muted)">0</span></td>
+          <td><span class="badge badge-green">✓ 사용</span></td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-bg"><div class="bar-fill bar-green" style="width:100%"></div></div>
+              <span class="bar-num" style="color:var(--accent)">176회</span>
+            </div>
+          </td>
+          <td><span class="badge badge-green">GWS 헤비유저</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="member-name">김표상</div>
+            <div class="member-account">김표상_미래혁신팀</div>
+          </td>
+          <td><span class="badge badge-green">멤버</span></td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-bg"><div class="bar-fill bar-slack" style="width:22%"></div></div>
+              <span class="bar-num">6</span>
+            </div>
+          </td>
+          <td><span style="color:var(--accent); font-weight:700">3</span></td>
+          <td><span class="badge badge-gray">미사용</span></td>
+          <td><span style="color:var(--text-dim)">—</span></td>
+          <td><span class="badge badge-blue">Slack 활성</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="member-name">최인찬</div>
+            <div class="member-account">최인찬_미래혁신팀</div>
+          </td>
+          <td><span class="badge badge-green">멤버</span></td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-bg"><div class="bar-fill bar-slack" style="width:17%"></div></div>
+              <span class="bar-num">5</span>
+            </div>
+          </td>
+          <td><span style="color:var(--text-muted)">0</span></td>
+          <td><span class="badge badge-gray">미사용</span></td>
+          <td><span style="color:var(--text-dim)">—</span></td>
+          <td><span class="badge badge-yellow">유도 필요</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="member-name">정현수</div>
+            <div class="member-account">trulyhs</div>
+          </td>
+          <td><span class="badge badge-red">초대됨</span></td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-bg"><div class="bar-fill bar-slack" style="width:0%"></div></div>
+              <span class="bar-num" style="color:var(--text-dim)">0</span>
+            </div>
+          </td>
+          <td><span style="color:var(--text-dim)">0</span></td>
+          <td><span class="badge badge-gray">미사용</span></td>
+          <td><span style="color:var(--text-dim)">—</span></td>
+          <td><span class="badge badge-red">가입 필요</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 채널 현황 -->
+  <div class="section-title">팀 채널 현황 <span class="pill pill-slack">Slack</span></div>
+  <div class="channel-card">
+    <div class="channel-row">
+      <div>
+        <div class="channel-name">#00_vision_미래혁신팀</div>
+        <div class="channel-desc">미래혁신팀 전용 채널 · 비공개 · 멤버 5명</div>
+      </div>
+      <div class="channel-stats">
+        <div class="channel-stat">
+          <div class="channel-stat-val" style="color:var(--accent3)">0</div>
+          <div class="channel-stat-label">게시 메시지</div>
+        </div>
+        <div class="channel-stat">
+          <div class="channel-stat-val" style="color:var(--accent4)">2</div>
+          <div class="channel-stat-label">조회 멤버</div>
+        </div>
+        <div class="channel-stat">
+          <div class="channel-stat-val" style="color:var(--text-muted)">5</div>
+          <div class="channel-stat-label">총 멤버</div>
+        </div>
+        <span class="badge badge-red">미활성</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 인사이트 -->
+  <div class="section-title">인사이트 & 액션 포인트 <span class="pill pill-all">Insights</span></div>
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-icon">⚡</div>
+      <div>
+        <div class="insight-title">김신애님 단독 헤비유저</div>
+        <div class="insight-body">팀 전체 사용량 <strong>176회 전원 김신애님</strong> 기록. Sheets 74회·Gemini 앱 86회·문서 4회·PPT 12회로 다양하게 활용 중.</div>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">⚠️</div>
+      <div>
+        <div class="insight-title">Gemini 활성화 시급</div>
+        <div class="insight-body">사용률 <strong>25% (1명)</strong>. 김표상·최인찬·정현수님 Gemini 사용량 0회. 김신애님 사례 공유로 팀 내 전파 필요.</div>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">💬</div>
+      <div>
+        <div class="insight-title">Slack 채널 활성화 필요</div>
+        <div class="insight-body">팀 전용 채널 메시지 <strong>0건</strong>. 3명 접속은 하나 읽기만 하는 패턴. 정현수님 가입 완료 안내 병행 필요.</div>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">🎯</div>
+      <div>
+        <div class="insight-title">2차 PoC 핵심 과제</div>
+        <div class="insight-body">김신애님 Sheets·Gemini 앱 활용 사례를 팀 내 공유하고, <strong>NotebookLM·Gem 심화 교육</strong>으로 나머지 3명 진입장벽 해소 필요.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 종합 평가 -->
+  <div class="section-title">종합 평가</div>
+  <div class="summary-card">
+    <div class="summary-title">📋 미래혁신팀 2차 PoC 진단</div>
+    <div class="summary-body">
+      미래혁신팀은 Gemini 실사용이 <strong>김신애님 1명(176회)</strong>에 완전히 집중된 상태입니다.
+      김신애님은 Sheets 74회, Gemini 앱 86회, PPT 12회 등 다양한 도구를 고르게 활용하고 있어 팀 내 AI 확산의 핵심 레퍼런스입니다.
+      <br><br>
+      반면 나머지 3명(김표상·최인찬·정현수)은 Gemini 사용량 0회이며, Slack 팀 채널도 메시지 0건으로 협업툴 전반의 활성화가 필요한 상황입니다.
+      정현수님은 Slack 가입도 미완료 상태로 조속한 안내가 필요합니다.
+    </div>
+    <div class="summary-tags">
+      <span class="tag tag-green">✅ 김신애 176회 헤비유저</span>
+      <span class="tag tag-red">❗ Gemini 1명 집중 (25%)</span>
+      <span class="tag tag-red">❗ Slack 채널 미활성</span>
+      <span class="tag tag-yellow">⚡ 팀 내 사례 공유 필요</span>
+      <span class="tag tag-blue">📌 정현수 가입 안내 필요</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    광동제약 AI센터 · 이진주 · 기준일 2026.05.11 · Slack 이전 30일 + Gemini Last 28 Days 실데이터 기반
+  </div>
+
+</div>
+</body>
+</html>
