@@ -400,9 +400,124 @@
     .hero-stats { gap: 12px; }
     .stat-chip .num { font-size: 20px; }
   }
+
+  /* ── INTRO ── */
+  .intro {
+    background: #fff;
+    padding: 52px 40px 48px;
+    text-align: center;
+    border-bottom: 1.5px solid #e8edf8;
+  }
+
+  .intro-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #EEF2FF;
+    color: #3D52D0;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  .intro h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #1a1a2e;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .intro h2 em {
+    font-style: normal;
+    color: #1557f0;
+  }
+
+  .intro-body {
+    font-size: 15px;
+    color: #3d4a63;
+    line-height: 1.9;
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+
+  .intro-body strong {
+    color: #1a1a2e;
+    font-weight: 700;
+  }
+
+  .intro-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .tl-dot {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .tl-dot-blue   { background: #E8F0FE; }
+  .tl-dot-green  { background: #E6F4EA; }
+  .tl-dot-yellow { background: #FEF7E0; }
+
+  .tl-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a1a2e;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .tl-sub {
+    font-size: 11px;
+    color: #5f6b8a;
+    text-align: center;
+  }
+
+  .tl-arrow {
+    font-size: 20px;
+    color: #c5cde8;
+    flex-shrink: 0;
+    padding: 0 4px;
+    margin-bottom: 18px;
+  }
 </style>
 </head>
 <body>
+
+<!-- ══════════════════════════════
+     INTRO
+══════════════════════════════ -->
+<div class="intro">
+  <div class="intro-label">📋 1차 GWS PoC · 2026.04 – 2026.05</div>
+  <h2>업무가 달라졌습니다 —<br><em>Google AI</em> 첫 도입 현장 리포트</h2>
+  <div class="intro-body">
+    AI센터는 2026년 4월부터 5월까지 <strong>1차 PoC(Proof of Concept)</strong>를 진행했습니다.<br>
+    Google Workspace(GWS)와 Gemini AI를 실제 업무에 도입해 <strong>경영관리본부·CMO본부의 많은 부서에서</strong> 직접 사용해보며 가능성을 검증했습니다.<br><br>
+    단순히 툴을 써보는 것에 그치지 않고, <strong>실제 업무 문제를 AI로 해결한 다양한 사례</strong>들이 만들어졌습니다.<br>
+    그 중 <strong>특히 좋은 활용을 보여준 대표 사례</strong>들을 소개합니다.
+  </div>
+</div>
 
 <!-- ══════════════════════════════
      HERO
