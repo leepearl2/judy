@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>광동제약 AI센터 | 2차 PoC 참가자 안내</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f4f5f7;
+    color: #1a1a2e;
+    padding: 32px 16px;
+    line-height: 1.7;
+  }
+
+  .email-wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    background: #0d2240;
+    border-radius: 12px 12px 0 0;
+    padding: 32px 40px;
+    text-align: center;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    color: #a8d4f5;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .header h1 {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .header p {
+    color: #7eb8e8;
+    font-size: 13px;
+  }
+
+  /* Body */
+  .body {
+    background: #ffffff;
+    padding: 36px 40px;
+  }
+
+  .greeting {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 24px;
+    line-height: 1.8;
+  }
+
+  /* Notice box */
+  .notice-box {
+    background: #fff8e1;
+    border: 1px solid #f59e0b;
+    border-left: 4px solid #f59e0b;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 28px;
+  }
+  .notice-box .notice-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #92400e;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .notice-box .notice-title::before {
+    content: "⚠";
+    font-size: 15px;
+  }
+  .notice-box p {
+    font-size: 13px;
+    color: #78350f;
+    line-height: 1.7;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 32px;
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0d2240;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e8f0fb;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-num {
+    background: #0d2240;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Password box */
+  .pw-box {
+    background: #f0f4ff;
+    border: 1px solid #c7d7f5;
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .pw-label {
+    font-size: 12px;
+    color: #5c7ca8;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .pw-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0d2240;
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+  }
+  .pw-tag {
+    background: #dbeafe;
+    color: #1e40af;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .pw-note {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* Step list */
+  .step-list {
+    list-style: none;
+    counter-reset: step-counter;
+  }
+  .step-list li {
+    counter-increment: step-counter;
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step-list li::before {
+    content: counter(step-counter);
+    background: #e8f0fb;
+    color: #1d4ed8;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-list li .step-content {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.7;
+  }
+  .step-list li .step-content strong {
+    color: #0d2240;
+    font-weight: 600;
+  }
+  .step-list li .step-sub {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* App download row */
+  .app-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 14px 0;
+  }
+  .app-badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #f8fafc;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: #374151;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .app-icon {
+    font-size: 18px;
+  }
+
+  /* Info chip */
+  .chip-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .chip {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .chip-blue { background: #dbeafe; color: #1e40af; }
+  .chip-gray { background: #f3f4f6; color: #4b5563; }
+  .chip-red  { background: #fee2e2; color: #b91c1c; }
+
+  /* Closed notice */
+  .closed-box {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    border-left: 4px solid #ef4444;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .closed-box .closed-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #7f1d1d;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .closed-box .closed-title::before { content: "🔒"; font-size: 14px; }
+  .closed-box ul {
+    list-style: none;
+    font-size: 13px;
+    color: #991b1b;
+    line-height: 1.9;
+  }
+  .closed-box ul li::before { content: "✗  "; font-weight: 700; }
+
+  /* Data export tip */
+  .tip-box {
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #166534;
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+  .tip-box strong { font-weight: 600; }
+
+  /* Contact */
+  .contact-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .contact-card {
+    flex: 1;
+    min-width: 180px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .contact-card .role {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  .contact-card .name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0d2240;
+    margin-bottom: 4px;
+  }
+  .contact-card .channel {
+    font-size: 12px;
+    color: #1d4ed8;
+  }
+
+  /* Footer */
+  .footer {
+    background: #f4f5f7;
+    border-top: 1px solid #e2e8f0;
+    border-radius: 0 0 12px 12px;
+    padding: 22px 40px;
+    text-align: center;
+  }
+  .footer p {
+    font-size: 12px;
+    color: #9ca3af;
+    line-height: 1.8;
+  }
+  .footer .company {
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid #f0f0f0;
+    margin: 28px 0;
+  }
+
+  @media (max-width: 480px) {
+    .body { padding: 24px 20px; }
+    .header { padding: 24px 20px; }
+    .pw-value { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="email-wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">광동제약 AI센터</div>
+    <h1>Google Workspace<br>ekdp.com 도메인 접속 안내</h1>
+    <p>2026년 6월 · AI센터 발송</p>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <p class="greeting">
+      안녕하세요.<br>
+      2차 PoC에 참여해 주셔서 감사합니다.<br>
+      아래 안내에 따라 <strong>계정 접속 및 OTP 등록</strong>을 완료해 주시기 바랍니다.
+    </p>
+
+    <!-- 공지 박스 -->
+    <div class="notice-box">
+      <div class="notice-title">필독 — 시작 전 반드시 확인하세요</div>
+      <p>
+        2차 PoC는 <strong>1차 계정과 별도의 신규 계정</strong>으로 운영됩니다.<br>
+        기존 1차 PoC 계정(<code>@kwangdong.mzpoc.xyz</code>)은 현재 <strong>접근이 차단</strong>되어 있습니다.<br>
+        아래 안내에 따라 <strong>2차 전용 계정(<code>@ekdp.com</code>)으로 새로 로그인</strong>해 주세요.
+      </p>
+    </div>
+
+    <!-- SECTION 1: 계정 정보 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">1</span>
+        계정 정보
+      </div>
+
+      <div class="pw-box">
+        <div>
+          <div class="pw-label">계정</div>
+          <div style="font-size: 14px; font-weight: 600; color: #0d2240; margin-top: 2px;">회사 외부 메일 주소 (<code>@ekdp.com</code>)</div>
+        </div>
+      </div>
+
+      <div class="pw-box" style="margin-top: 10px;">
+        <div>
+          <div class="pw-label">초기 비밀번호</div>
+          <div class="pw-value">Kwangdong@2026!</div>
+        </div>
+        <span class="pw-tag">모든 신규 계정 공통</span>
+      </div>
+      <p class="pw-note">⚑ 최초 로그인 후 반드시 개인 비밀번호로 변경해 주세요.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 2: OTP 등록 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">2</span>
+        OTP(2단계 인증) 등록 방법
+      </div>
+
+      <p style="font-size: 13px; color: #666; margin-bottom: 16px;">
+        Google Authenticator 앱을 설치한 후 아래 순서대로 진행해 주세요.
+      </p>
+
+      <!-- 앱 설치 -->
+      <div style="margin-bottom: 18px;">
+        <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 10px;">📲 앱 설치 (최초 1회)</div>
+        <div style="font-size: 13px; color: #555; line-height: 2;">
+          · iOS : App Store에서 <strong>Google Authenticator</strong> 앱 설치<br>
+          · Android : Google Play에서 <strong>Google Authenticator</strong> 앱 설치
+        </div>
+      </div>
+
+      <!-- 등록 단계 -->
+      <ol class="step-list">
+        <li>
+          <div class="step-content">
+            <strong>Google 계정에 로그인</strong><br>
+            <code>mail.google.com</code> 접속 후 2차 PoC 계정(<code>@ekdp.com</code>)으로 로그인합니다.
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <strong>보안 설정 페이지 이동</strong><br>
+            우측 상단 프로필 아이콘 클릭 → <strong>Google 계정 관리</strong> → 상단 탭 <strong>[보안]</strong> 클릭
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <strong>2단계 인증 시작</strong><br>
+            'Google에 로그인하는 방법' 섹션 → <strong>[2단계 인증]</strong> 클릭 → <strong>[시작하기]</strong>
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <strong>인증 앱 선택</strong><br>
+            인증 방법 목록에서 <strong>[인증 앱]</strong> 선택 → <strong>[계속]</strong>
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <strong>QR 코드 스캔</strong><br>
+            화면에 표시된 QR 코드를 Google Authenticator 앱으로 스캔합니다.
+            <div class="step-sub">앱 실행 → 우측 하단 <strong>[+]</strong> 버튼 → <strong>[QR 코드 스캔]</strong></div>
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <strong>인증 코드 입력 및 완료</strong><br>
+            앱에 표시된 <strong>6자리 숫자</strong>를 화면에 입력 → <strong>[확인]</strong> 클릭으로 등록 완료
+            <div class="step-sub">⏱ 코드는 30초마다 갱신됩니다. 만료 전 빠르게 입력해 주세요.</div>
+          </div>
+        </li>
+      </ol>
+
+      <div style="background: #eff6ff; border-radius: 8px; padding: 12px 16px; margin-top: 4px; font-size: 13px; color: #1e40af;">
+        ✅ 등록 완료 후 다음 로그인부터 <strong>비밀번호 + OTP 6자리</strong>를 함께 입력하게 됩니다.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 3: 1차 계정 접근 불가 안내 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">3</span>
+        1차 PoC 계정 종료 안내
+      </div>
+
+      <div class="closed-box">
+        <div class="closed-title">1차 PoC 계정 접근이 차단되었습니다</div>
+        <ul>
+          <li>기존 1차 계정(<code style="color:#991b1b;">@kwangdong.mzpoc.xyz</code>)으로 Google Workspace 로그인 불가</li>
+          <li>1차 계정 Gmail, Google Drive 등 모든 서비스 이용 불가</li>
+          <li>기존 계정으로 Gemini 등 AI 서비스 이용 불가</li>
+        </ul>
+      </div>
+
+      <!-- Drive 이관 완료 안내 -->
+      <div class="tip-box" style="margin-top: 12px;">
+        <strong>✅ 1차 PoC Google Drive 파일 — 일괄 이관 완료</strong><br>
+        1차 PoC 기간 중 저장된 Google Drive 파일은 <strong>2차 계정으로 일괄 이관이 완료</strong>되었습니다.
+      </div>
+
+      <!-- 파일 권한 확인 안내 -->
+      <div style="background: #fffbeb; border: 1px solid #fcd34d; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 16px 18px; margin-top: 12px; font-size: 13px; color: #78350f; line-height: 1.8;">
+        <div style="font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+          ⚠ 폴더 및 파일 공유 권한 확인 필요
+        </div>
+        기본적인 권한 설정은 완료되었으나, <strong>폴더·파일의 공유 권한</strong>은 이관 후 다시 한번 확인이 필요합니다.<br><br>
+        <strong>확인 방법</strong><br>
+        파일 또는 폴더 우클릭 → <strong>[공유]</strong> 클릭 → 공유 대상이 올바르게 설정되어 있는지 확인<br><br>
+        <span style="font-size: 12px; color: #92400e;">
+          · 팀원과 공유 중인 폴더·파일은 2차 계정 이메일로 다시 공유 설정이 필요할 수 있습니다.<br>
+          · 권한 설정 관련 문의는 아래 담당자에게 연락해 주세요.
+        </span>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 문의처 -->
+    <div class="section" style="margin-bottom: 0;">
+      <div class="section-title">
+        <span class="section-num">✉</span>
+        문의처
+      </div>
+      <div class="contact-row">
+        <div class="contact-card">
+          <div class="role">문의처</div>
+          <div class="name">AI센터</div>
+          <div class="channel">회사 메신저 또는 내부 메일로 문의</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <p class="company">광동제약 AI센터</p>
+    <p>
+      본 메일은 2차 PoC 참가자 전용 안내입니다.<br>
+      문의사항은 <strong>Slack 메신저</strong> 또는 <strong>내부 메일</strong>로 AI센터 담당자에게 연락해 주세요.
+    </p>
+  </div>
+
+</div><!-- /email-wrapper -->
+</body>
+</html>
